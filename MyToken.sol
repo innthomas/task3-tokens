@@ -16,12 +16,11 @@ contract MyToken is ERC20, Ownable {
         _mint(to, amount);
     }
 
-    function buyToken(address receiver) public payable returns (bool) {
-        uint256 amount = msg.value/10**18 * 1000;
-        balances[receiver] += amount;
-      
-        return true ;
-         
+   function buyToken(address receiver) public payable returns (uint256){
+        uint256 tokenAmount = msg.value / (1 * 10 ** decimals()) * 1000;
 
+        _mint(receiver, tokenAmount);
+
+        return tokenAmount;
     }
 }
